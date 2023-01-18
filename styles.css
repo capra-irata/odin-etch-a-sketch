@@ -9,6 +9,6 @@
 
 #sketchpad {
   display: flex;
-  width: 500px;
-  height: 500px;
+  width: 50vh;
+  height: 50vh;
 }
