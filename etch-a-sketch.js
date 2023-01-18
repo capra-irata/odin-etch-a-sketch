@@ -21,4 +21,19 @@ function createGrid(size) {
   }
 }
 
+function getGridSize() {
+  let size;
+
+  // Repeat until a valid positive number is entered
+  do {
+    size = +prompt(`How wide would you like the grid? (Max 100)`, 16);
+  } while (isNaN(size) || size < 1);
+
+  size = Math.floor(size); // Remove decimals
+  if (size > 100) size = 100; // Max grid size of 100
+}
+
+const sizeButton = document.querySelector(`button#size`);
+sizeButton.addEventListener(`click`, getGridSize);
+
 createGrid(16);
