@@ -1,15 +1,17 @@
 function createGrid(size) {
-  const container = document.querySelector(`#container`);
+  const sketchpad = document.querySelector(`#sketchpad`);
 
   for (i = 0; i < size; i++) {
-    const row = document.createElement(`div`);
+    const col = document.createElement(`div`);
+    col.style.cssText = `display: flex; flex-direction: column; flex: 1 0 auto;`;
 
     for (j = 0; j < size; j++) {
-      const col = document.createElement(`div`);
-      row.appendChild(col);
+      const cell = document.createElement(`div`);
+      cell.style.cssText = `flex: 1 0 auto; border: 2px solid black;`;
+      col.appendChild(cell);
     }
 
-    container.appendChild(row);
+    sketchpad.appendChild(col);
   }
 }
 
