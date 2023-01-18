@@ -4,7 +4,8 @@ function sketch(e) {
 }
 
 function createGrid(size) {
-  const sketchpad = document.querySelector(`#sketchpad`);
+  const grid = document.querySelector(`#grid`);
+  grid.replaceChildren(); // Remove old grid
 
   for (i = 0; i < size; i++) {
     const col = document.createElement(`div`);
@@ -17,7 +18,7 @@ function createGrid(size) {
       col.appendChild(cell);
     }
 
-    sketchpad.appendChild(col);
+    grid.appendChild(col);
   }
 }
 
@@ -31,6 +32,7 @@ function getGridSize() {
 
   size = Math.floor(size); // Remove decimals
   if (size > 100) size = 100; // Max grid size of 100
+  createGrid(size);
 }
 
 const sizeButton = document.querySelector(`button#size`);
