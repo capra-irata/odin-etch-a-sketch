@@ -17,11 +17,11 @@ function createGrid(size) {
   const grid = document.querySelector(`#grid`);
   grid.replaceChildren(); // Remove old grid
 
-  for (i = 0; i < size; i++) {
+  for (let i = 0; i < size; i++) {
     const col = document.createElement(`div`);
     col.classList.add(`column`); // Make columns flex containers
 
-    for (j = 0; j < size; j++) {
+    for (let j = 0; j < size; j++) {
       const cell = document.createElement(`div`);
       cell.classList.add(`cell`); // Flex cells to fill column
       cell.style[`background-color`] = `rgb(255, 255, 255)`;
