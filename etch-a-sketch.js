@@ -1,6 +1,18 @@
+function getRandomColor() {
+  // Generate a random RGB value
+  return [
+    Math.floor(Math.random() * 256),
+    Math.floor(Math.random() * 256),
+    Math.floor(Math.random() * 256)
+  ];
+}
+
 function sketch(e) {
   // When the cell is hovered, change its background color
-  e.target.classList.add(`hovered`);
+  // e.target.classList.add(`hovered`);
+
+  const color = getRandomColor();
+  e.target.style[`background-color`] = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
 }
 
 function createGrid(size) {
