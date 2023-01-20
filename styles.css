@@ -7,9 +7,6 @@
   align-items: center;
 }
 
-button#size {
-}
-
 #grid {
   border: 4px solid black;
   width: 50vh;
@@ -27,7 +24,3 @@ button#size {
 .cell {
   flex: 1 0 auto;
 }
-
-/* .hovered {
-  background-color:rgb(90, 90, 90);
-} */

@@ -1,18 +1,10 @@
-function getRandomColor() {
-  // Generate a random RGB value
-  return [
-    Math.floor(Math.random() * 256),
-    Math.floor(Math.random() * 256),
-    Math.floor(Math.random() * 256)
-  ];
-}
-
 function sketch(e) {
-  // When the cell is hovered, change its background color
-  // e.target.classList.add(`hovered`);
+  // Create an array from the values of the rgb string
+  let color = e.target.style[`background-color`].slice(4, -1).split(`,`);
+  if (+color[0] === 0) return; // Return early if color is black
 
-  const color = getRandomColor();
-  e.target.style[`background-color`] = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+  color = color.map((value) => value - 26); // Darken color by ~10%
+  e.target.style[`background-color`] = `rgb(${color.join(`, `)})`;
 }
 
 function createGrid(size) {
@@ -26,6 +18,7 @@ function createGrid(size) {
     for (j = 0; j < size; j++) {
       const cell = document.createElement(`div`);
       cell.classList.add(`cell`); // Flex cells to fill column
+      cell.style[`background-color`] = `rgb(255, 255, 255)`;
       cell.addEventListener(`mouseover`, sketch);
       col.appendChild(cell);
     }
