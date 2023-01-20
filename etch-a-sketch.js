@@ -1,10 +1,16 @@
-function sketch(e) {
-  // Create an array from the values of the rgb string
-  let color = e.target.style[`background-color`].slice(4, -1).split(`,`);
-  if (+color[0] === 0) return; // Return early if color is black
+createGrid(16);
 
-  color = color.map((value) => value - 26); // Darken color by ~10%
-  e.target.style[`background-color`] = `rgb(${color.join(`, `)})`;
+const sizeButton = document.querySelector(`button#size`);
+sizeButton.addEventListener(`click`, getGridSize);
+
+function getGridSize() {
+  let size;
+  do {
+    size = +prompt(`What size grid would you like? (Max 100)`, 16);
+  } while (isNaN(size) || size < 1); // Repeat until a valid positive number is entered
+
+  size = Math.floor(size); // Remove decimals
+  createGrid(Math.min(size, 100)); // Max grid size of 100
 }
 
 function createGrid(size) {
@@ -20,6 +26,7 @@ function createGrid(size) {
       cell.classList.add(`cell`); // Flex cells to fill column
       cell.style[`background-color`] = `rgb(255, 255, 255)`;
       cell.addEventListener(`mouseover`, sketch);
+
       col.appendChild(cell);
     }
 
@@ -27,20 +34,11 @@ function createGrid(size) {
   }
 }
 
-function getGridSize() {
-  let size;
+function sketch(e) {
+  // Create an array of the current cell's rgb values
+  let color = e.target.style[`background-color`].slice(4, -1).split(`,`);
+  if (+color[0] === 0) return; // Return early if color is black
 
-  // Repeat until a valid positive number is entered
-  do {
-    size = +prompt(`How wide would you like the grid? (Max 100)`, 16);
-  } while (isNaN(size) || size < 1);
-
-  size = Math.floor(size); // Remove decimals
-  if (size > 100) size = 100; // Max grid size of 100
-  createGrid(size);
+  color = color.map((value) => value - 26); // Darken color by ~10%
+  e.target.style[`background-color`] = `rgb(${color.join(`, `)})`;
 }
-
-const sizeButton = document.querySelector(`button#size`);
-sizeButton.addEventListener(`click`, getGridSize);
-
-createGrid(16);
